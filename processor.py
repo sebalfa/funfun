@@ -10,6 +10,11 @@ def my_function(x):
 
     #cf.uprint(content)
     soup = BeautifulSoup(content, 'html.parser')
-    print(soup.title.prettify())
+
+    print(soup.find_all('p'))
+    """
+    Below find the title
+    #print(soup.title.prettify())
+    """
 
 my_function('https://ekstrabladet.dk/ferie/ikonisk-stenstatue-paa-paaskeoeen-er-oedelagt/8034294')
