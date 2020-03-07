@@ -8,12 +8,19 @@ def my_function(x):
 
     content = branch.contents
 
+    """
+    Saves all results in the variable soup in order to work with the data from content
+    """
     soup = BeautifulSoup(content, 'html.parser')
 
+    """
+    Below find all text associated with 'p' and from that it prints all text in a text version removing whitespaces with strip
+    """
     all_text = soup.find_all('p')
 
     for all_text in all_text:
         print (all_text.text.strip())
+
     """
     Below find the title
     print(soup.title.prettify())
