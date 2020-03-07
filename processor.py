@@ -11,7 +11,12 @@ def my_function(x):
     #cf.uprint(content)
     soup = BeautifulSoup(content, 'html.parser')
 
-    print(soup.find_all('p'))
+    #print(soup.find_all('p'))
+
+    all_text = soup.find_all('p')
+
+    for all_text in all_text:
+        print (all_text.text)
     """
     Below find the title
     #print(soup.title.prettify())
