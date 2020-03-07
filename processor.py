@@ -8,18 +8,15 @@ def my_function(x):
 
     content = branch.contents
 
-    #cf.uprint(content)
     soup = BeautifulSoup(content, 'html.parser')
-
-    #print(soup.find_all('p'))
 
     all_text = soup.find_all('p')
 
     for all_text in all_text:
-        print (all_text.text)
+        print (all_text.text.strip())
     """
     Below find the title
-    #print(soup.title.prettify())
+    print(soup.title.prettify())
     """
 
 my_function('https://ekstrabladet.dk/ferie/ikonisk-stenstatue-paa-paaskeoeen-er-oedelagt/8034294')
