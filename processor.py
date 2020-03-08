@@ -2,28 +2,34 @@ import grabber
 import common_funcs as cf
 from bs4 import BeautifulSoup
 
-def my_function(x):
-    branch = grabber.Branch(x)
-    branch.pull()
+class Processor:
+    def __init__(self, url):
+        self.url = url
 
-    content = branch.contents
+    def grabcontent(self, **kwargs):
+        """
+        this function grabs the content of a webpage given by parameter url or default self.url
+        """
+        url = kwargs.get('url', self.url)
 
-    """
-    Saves all results in the variable soup in order to work with the data from content
-    """
-    soup = BeautifulSoup(content, 'html.parser')
+        branch = grabber.Branch(url)
+        branch.pull()
 
-    """
-    Below find all text associated with 'p' and from that it prints all text in a text version removing whitespaces with strip
-    """
-    all_text = soup.find_all('p')
+        content = branch.contents
 
-    for all_text in all_text:
-        print (all_text.text.strip())
+        #Saves all results in the variable soup in order to work with the data from content
+        soup = BeautifulSoup(content, 'html.parser')
 
-    """
-    Below find the title
-    print(soup.title.prettify())
-    """
+        #Below find all text associated with 'p' and from that it prints all text in a text version removing whitespaces with strip
+        all_text = soup.find_all('p')
 
-my_function('https://ekstrabladet.dk/ferie/ikonisk-stenstatue-paa-paaskeoeen-er-oedelagt/8034294')
+        for snippet in all_text:
+            print (snippet.text.strip())
+
+        #Below find the title
+        #print(soup.title.prettify())
+
+
+proc = Processor('https://ekstrabladet.dk/ferie/ikonisk-stenstatue-paa-paaskeoeen-er-oedelagt/8034294')
+proc.grabcontent()
+#proc.grabcontent(url = "https://ekstrabladet.dk/112/skud-i-boligkvarter-i-nat/8037296")
